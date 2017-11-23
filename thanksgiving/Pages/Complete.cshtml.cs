@@ -10,7 +10,7 @@ namespace thanksgiving.Pages
 {
 	public class CompleteModel : PageModel
 	{
-		private Greetings bridgeGreetings;
+		public Greetings bridgeGreetings;
 
 		public DbBuilder _myDB { get; set; }
 

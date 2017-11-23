@@ -3,15 +3,18 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="DB\**" />
+    <Content Remove="DB\**" />
+    <EmbeddedResource Remove="DB\**" />
+    <None Remove="DB\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DB\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="egreetings.db" CopyToOutputDirectory="Always" />
+    <None Include="egreeting.db" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>

@@ -37,14 +37,8 @@ a.btn-primary,
 	.btn-primary:hover,
 	.btn-primary:focus {
 		background: #ff6a00;
-		border-color: #fff;
+		border-color: #ff6a00;
 	}
-
-
-
-
-
-
 
 
 
@@ -74,6 +68,7 @@ a.btn-primary,
 
 .panel-header {
 	text-align: center;
+	font-family: 'Dancing Script';
 	padding: 1em;
 	font-weight: bold;
 	font-size: 1.2em;
@@ -93,7 +88,7 @@ a.btn-primary,
 
 .form .countdown {
 	float: right;
-	color: #cc0000;
+	color: #ff6a00;
 	font-size: .8em;
 }
 
