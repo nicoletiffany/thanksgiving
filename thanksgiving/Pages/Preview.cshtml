@@ -1,0 +1,27 @@
+﻿@page
+@model PreviewModel
+
+
+
+<div class="panel preview">
+	<div class="panel-header">Confirm your entry is correct</div>
+	<div class="panel-body">
+		@Html.Partial("_Preview", Model.bridgeGreetings)
+	</div>
+	<div class="panel-footer text-center">
+
+		<div class="has-error">@Model.Message</div>
+
+		<form method="post">
+			<input type="hidden" asp-for="@Model.bridgeGreetings.ID" />
+
+			<div class="btn-group">
+				<a href="/update?id=@Model.bridgeGreetings.ID" class="btn btn-primary">Edit</a>
+				<input type="submit" value="Send" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@Model.bridgeGreetings.toName
+@Model.bridgeGreetings.toEmail

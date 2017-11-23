@@ -1,0 +1,77 @@
+﻿@model thanksgiving.Model.Greetings
+
+
+<input type="hidden" asp-for="@Model.ID" />
+
+<div class="to">
+	<div class="form-group">
+		<label asp-for="@Model.toName" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.toName" class="text-danger"></span>
+			<input asp-for="@Model.toName" type="text" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.toEmail" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.toEmail" class="text-danger"></span>
+			<input type="email" asp-for="@Model.toEmail" class="form-control" />
+		</div>
+	</div>
+</div>
+
+
+
+<div class="custom">
+	<div class="form-group">
+		<label asp-for="@Model.subject" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.subject" class="text-danger"></span>
+			<div class="countdown"></div>
+			<input type="text" asp-for="@Model.subject" class="form-control" maxlength="100" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.mesg" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.mesg" class="text-danger"></span>
+			<div class="countdown"></div>
+			<textarea asp-for="@Model.mesg" class="form-control" placeholder="Personalize your message here." maxlength="140"></textarea>
+		</div>
+	</div>
+
+</div>
+
+
+
+<div class="from">
+	<div class="form-group">
+		<label asp-for="@Model.fromName" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.fromName" class="text-danger"></span>
+			<input type="text" asp-for="@Model.fromName" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.fromEmail" class="col-2 control-label"></label>
+		<div class="col-10">
+			<span asp-validation-for="@Model.fromEmail" class="text-danger"></span>
+			<input type="email" asp-for="@Model.fromEmail" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-2"><input type="checkbox" name="agree" value="true" /> I agree to this website's <a href="#" data-toggle="modal" data-target="#legalTOS">Terms of Use</a> and <a href="#" data-toggle="modal" data-target="#legalPrivacy">Privacy Policy</a></label>
+		<span asp-validation-for="@Model.agree" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<div class="g-recaptcha" data-sitekey="6Le-Jy0UAAAAAMyxngpkD12DzzXto51KmZNciDG2"></div>
+		<span asp-validation-for="@Model.reCaptcha" class="text-danger"></span>
+	</div>
+</div>
+
+
+
+
+
+@Html.Partial("_LegalTOS")
+@Html.Partial("_LegalPrivacy")

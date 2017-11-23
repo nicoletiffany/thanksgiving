@@ -1,0 +1,50 @@
+﻿@model thanksgiving.Model.Greetings
+
+
+<div class="to">
+	<div class="form-group">
+		<label asp-for="@Model.toName" class="col-2 control-label"></label>
+		<div class="col-10">
+			@Html.Raw(Model.toName)
+		</div>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.toEmail" class="col-2 control-label"></label>
+		<div class="col-10">
+			@Html.Raw(Model.toEmail)
+		</div>
+	</div>
+
+	<div class="custom">
+		<div class="form-group">
+			<label asp-for="@Model.subject" class="col-2 control-label"></label>
+			<div class="col-10">
+				@Html.Raw(Model.subject)
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.mesg" class="col-2 control-label"></label>
+			<div class="col-10">
+				@Html.Raw(Model.mesg)
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<div class="from">
+		<div class="form-group">
+			<label asp-for="@Model.fromName" class="col-2 control-label"></label>
+			<div class="col-10">
+				@Html.Raw(Model.fromName)
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.fromEmail" class="col-2 control-label">Email:</label>
+			<div class="col-10">
+				@Html.Raw(Model.fromEmail)
+			</div>
+		</div>
+	</div>
+</div>
