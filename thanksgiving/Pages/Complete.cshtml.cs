@@ -14,6 +14,11 @@ namespace thanksgiving.Pages
 
 		public DbBuilder _myDB { get; set; }
 
+		public CompleteModel(DbBuilder myDB)
+		{
+			_myDB = myDB;
+		}
+
 		public void OnGet(int ID = 0)
 		{
 			if (ID > 0)

@@ -84,7 +84,7 @@ namespace thanksgiving.Pages
 				using (var client = new HttpClient())
 				{
 					var values = new Dictionary<string, string>();
-					values.Add("secret", "6Le-Jy0UAAAAANU5qOeZZ1KXA5NZ0IJxzaVweZys");
+					values.Add("secret", "6LeM_i0UAAAAAH1TDEPx7tflYMolbG6byr52fq0f");
 					values.Add("response", response);
 					values.Add("remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString());
 

@@ -47,6 +47,7 @@ namespace thanksgiving.Pages
 
 					Mailer.IsBodyHtml = true;
 
+
 					using (SmtpClient smtpServer = new SmtpClient())
 					{
 						smtpServer.EnableSsl = false;
@@ -66,7 +67,7 @@ namespace thanksgiving.Pages
 					_myDB.SaveChanges();
 
 
-					return RedirectToPage("complete");
+					return RedirectToPage("complete", new {ID= bridgeGreetings.ID});
 
 				}
 				catch
