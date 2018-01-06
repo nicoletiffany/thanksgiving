@@ -68,7 +68,15 @@
 	<!-- END: FACEBOOK LIBRARY -->
 	<!-- BEGIN: BODY HTML -->
 	<div class="container">
-		<h1 class="text-center">Send A Thanksgiving Greeting To A Friend</h1>
+
+
+		@if (ViewBag.Read == "read")
+	{<h1 class="text-center">Your Thanksgiving Greeting:</h1>}
+else
+{<h1 class="text-center">Send A Thanksgiving Greeting To A Friend</h1>}
+
+
+
 		<div class="row">
 			<div class="card col-sm-6 col-md-7 col-lg-8">
 				@Html.Partial("_Card")

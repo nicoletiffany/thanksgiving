@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace thanksgiving.Pages
 {
@@ -14,7 +15,7 @@ namespace thanksgiving.Pages
 		// DEFAULT MODE
 		public void OnGet()
 		{
-			bridgeGreetings = new Greetings();
+			//bridgeGreetings = new Greetings();
 		}
 
 		// PREVIEW MODE (AFTER SUBMITTING)
@@ -45,15 +46,16 @@ namespace thanksgiving.Pages
 						// DB-RELATED: SEND USER TO THE PREVIEW PAGE SHOWING THE NEW RECORD
 						return RedirectToPage("Preview", new { id = bridgeGreetings.ID });
 					}
-					catch
+					catch (Exception ex)
 					{
+						//ModelState.AddModelError("reCaptcha", ex.InnerException.Message);
 						return RedirectToPage("Index");
 					}
 				}
 			}
 			else
 			{
-				ModelState.AddModelError("bridgeGreetings.reCaptcha", "Hahaha!!");
+				ModelState.AddModelError("reCaptcha", "Hahaha!!");
 			}
 
 			return Page();
@@ -62,12 +64,14 @@ namespace thanksgiving.Pages
 		// BRIDGE TO GREETINGS MODEL
 		[BindProperty]
 		public Greetings bridgeGreetings { get; set; }
-
+		private IConfiguration _myConfiguration { get; set; }
+		public string message { get; set; }
 		// HEY, CONNECT MY DATABASE TO THIS MODEL
 		private DbBuilder _myDB;
-		public IndexModel(DbBuilder myDB)
+		public IndexModel(DbBuilder myDB, IConfiguration myConfiguration)
 		{
 			_myDB = myDB;
+			_myConfiguration = myConfiguration;
 		}
 
 
@@ -84,7 +88,7 @@ namespace thanksgiving.Pages
 				using (var client = new HttpClient())
 				{
 					var values = new Dictionary<string, string>();
-					values.Add("secret", "6LeM_i0UAAAAAH1TDEPx7tflYMolbG6byr52fq0f");
+					values.Add("secret", _myConfiguration["ReCaptcha:PrivateKey"]);
 					values.Add("response", response);
 					values.Add("remoteip", this.HttpContext.Connection.RemoteIpAddress.ToString());
 

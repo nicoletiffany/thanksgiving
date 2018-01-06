@@ -9,12 +9,12 @@
     <None Remove="DB\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="egreeting.db" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="egreeting.db" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>

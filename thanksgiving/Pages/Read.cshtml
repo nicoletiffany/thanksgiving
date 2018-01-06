@@ -1,0 +1,26 @@
+﻿@page "{ID?}"
+@model ReadModel
+
+@{
+	ViewBag.Read = "read";
+}
+
+<div class="panel preview">
+	<div class="panel-header">Happy Thanksgiving!</div>
+	<div class="panel-body">
+		@Html.Partial("_Preview", Model.bridgeGreetings)
+	</div>
+	<div class="panel-footer text-center">
+
+		<div class="has-error">@Model.Message</div>
+
+		<form method="post">
+			<input type="hidden" asp-for="@Model.bridgeGreetings.ID" />
+
+			<div class="btn-group">
+				<a href="~/" class="btn btn-primary">Send your own greeting!</a>
+			</div>
+		</form>
+	</div>
+</div>
+

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Net.Mail;
+using Microsoft.Extensions.Configuration;
 
 namespace thanksgiving.Pages
 {
@@ -11,12 +12,14 @@ namespace thanksgiving.Pages
 		// BRIDGE TO GREETINGS MODEL
 		[BindProperty]
 		public Greetings bridgeGreetings { get; set; }
+		private IConfiguration _myConfiguration { get; set; }
 
 		// DB-RELATED: CONNECT MY DATABASE TO THIS MODEL
 		private DbBuilder _myDB;
-		public PreviewModel(DbBuilder myDB)
+		public PreviewModel(DbBuilder myDB, IConfiguration myConfiguration)
 		{
 			_myDB = myDB;
+			_myConfiguration = myConfiguration;
 		}
 
 		public void OnGet(int ID = 0)
@@ -42,7 +45,15 @@ namespace thanksgiving.Pages
 
 					Mailer.To.Add(new MailAddress(bridgeGreetings.toEmail, bridgeGreetings.toName));
 					Mailer.Subject = bridgeGreetings.subject;
-					Mailer.Body = bridgeGreetings.mesg;
+					Mailer.Body = "<img src = 'http://nicole.wowoco.org/images/happythanksgiving.jpg' />"
+						+ bridgeGreetings.fromName
+						+ " has a Thanksgiving greeting for you! Visit "
+						+ "<a href=\"http://nicole.wowoco.org/read/\"" + bridgeGreetings.ID + ">" 
+						+ "this site"
+						+ "</a>"
+						+ " for the full message!";
+
+
 					Mailer.From = new MailAddress(bridgeGreetings.fromEmail, bridgeGreetings.fromName);
 
 					Mailer.IsBodyHtml = true;
@@ -50,10 +61,10 @@ namespace thanksgiving.Pages
 
 					using (SmtpClient smtpServer = new SmtpClient())
 					{
-						smtpServer.EnableSsl = false;
-						smtpServer.Host = "smtp18.wowoco.org"; // CHANGE
-						smtpServer.Port = 2525; // CHANGE
-						smtpServer.UseDefaultCredentials = false;
+						smtpServer.EnableSsl = Boolean.Parse(_myConfiguration["Smtp:EnableSs1"]);
+						smtpServer.Host = _myConfiguration["Smtp:Host"]; // CHANGE
+						smtpServer.Port = Int32.Parse(_myConfiguration["Smtp:Port"]); // CHANGE
+						smtpServer.UseDefaultCredentials = Boolean.Parse(_myConfiguration["Smtp:UseDefaultCredentials"]);
 						smtpServer.Send(Mailer);
 					}
 
@@ -72,7 +83,7 @@ namespace thanksgiving.Pages
 				}
 				catch
 				{
-					Message = "Yikes, your greeting can't be sent.";
+					Message = "Apologies, there was an error and your greeting can't be sent.";
 				}
 			}
 
